@@ -32,7 +32,7 @@
 
     **gulp-sass** compiles `public/styles/scss` directory to one `public/styles/site.css` file
 
-- **Bootstrap 4 **
+- **Bootstrap 4**
 
     Bootstrap 4 (beta) is included and is ready to go
 
