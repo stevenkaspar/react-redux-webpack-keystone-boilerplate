@@ -7061,6 +7061,15 @@ react-dom@15.4.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
+react-dom@^16.1.0:
+  version "16.1.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.1.0.tgz#ab6fd2a285096f388aeba51919a573d06c9bdde4"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+
 react-domify@0.2.6:
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/react-domify/-/react-domify-0.2.6.tgz#570d3a15cfc9d1fb2f464ccde1236fc5852e49bc"
