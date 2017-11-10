@@ -1,0 +1,19 @@
+mixin flash-messages(messages)
+  if messages
+    script
+      | var flash_messages = [];
+      each message in messages.info
+        +flash-message(message, 'info')
+      each message in messages.success
+        +flash-message(message, 'success')
+      each message in messages.warning
+        +flash-message(message, 'warning')
+      each message in messages.error
+        +flash-message(message, 'danger')
+      | console.log(flash_messages)
+
+mixin flash-message(message, type)
+    if utils.isObject(message)
+      | flash_messages.push ({title: !{JSON.stringify(message.title)}, detail: !{JSON.stringify(message.detail)}, list: !{JSON.stringify(message.list)}, type: !{JSON.stringify(type)}});
+    else
+      | flash_messages.push ({title: !{JSON.stringify(message)}, detail: null, list: null, type: !{JSON.stringify(type)}});

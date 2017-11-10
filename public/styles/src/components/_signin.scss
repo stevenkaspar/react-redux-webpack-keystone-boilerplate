@@ -1,0 +1,22 @@
+.signin-form-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: $gray-100;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .signin-form-wrapper {
+    max-width: 90%;
+    width: 400px;
+    display: block;
+    background: white;
+    border-radius: .2rem;
+    box-shadow: 0 0 2px $gray-600;
+    padding: 1rem;
+  }
+}

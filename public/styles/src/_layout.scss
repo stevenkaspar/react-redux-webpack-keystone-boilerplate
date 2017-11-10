@@ -1,0 +1,24 @@
+$header-height: 85px;
+
+body {
+	padding-top:    $header-height;
+	padding-bottom: $header-height;
+  overflow-x: hidden;
+  background: $gray-100;
+}
+.navbar-brand {
+  font-weight: 300;
+}
+img {
+	max-width: 100%;
+}
+
+[data-clickable] {
+  cursor: pointer;
+}
+
+.btn-group {
+  .active {
+    box-shadow: none !important;
+  }
+}

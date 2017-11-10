@@ -1,0 +1,259 @@
+.section-header {
+  font-weight: 300;
+  color: $secondary;
+  margin-bottom: .5rem;
+
+  .section-label {
+    font-weight: 300;
+    font-size: 1.25rem;
+    margin-bottom: 0;
+  }
+}
+
+.invested-entities-container {
+  width: 100%;
+
+  .invested-entities-list {
+    background: $white;
+    border: 1px solid $gray-200;
+    border-radius: $border-radius;
+    .invested-entities-list-item {
+
+      padding: 1rem;
+      // display: flex;
+      // align-items: flex-start;
+      transition: box-shadow .250s linear;
+
+      &:hover {
+        box-shadow: 0 0 4px $gray-400;
+      }
+
+      .invested-entities-list-item-left,
+      .invested-entities-list-item-right {
+        padding: 1rem 0rem;
+      }
+
+      .invested-entities-list-item-left {
+        text-align: right;
+        white-space: nowrap;
+      }
+      .invested-entities-list-item-right {
+        width: 99%;
+      }
+
+
+      .invested-entities-cell-wrapper {
+        padding: 0rem 1rem;
+      }
+
+      .invested-entities-list-item-left {
+        .invested-entities-cell-wrapper {
+          border-right: 1px solid $gray-200;
+        }
+      }
+
+
+      .invested-entities-list-item-total-returned {
+        font-size: 1.25rem;
+        line-height: 1.25rem;
+        font-weight: 300;
+        padding-bottom: .5rem;
+      }
+      .invested-entities-list-item-label {
+        font-size: 1.25rem;
+        line-height: 1.25rem;
+        padding-bottom: .5rem;
+      }
+    }
+  }
+}
+
+.recent-activity-container {
+  .recent-activity-wrapper {
+    background: $white;
+    border: 1px solid $gray-200;
+    border-radius: $border-radius;
+
+    .recent-activity-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .recent-activity-row-left {
+        padding: 1rem;
+        flex: none;
+      }
+      .recent-activity-row-right {
+        padding: 1rem;
+        flex: auto;
+        text-align: right;
+        font-size: 1.15rem;
+      }
+
+      .recent-activity-row-month {
+        text-transform: uppercase;
+      }
+      .recent-activity-row-day {
+        line-height: 1;
+        font-size: 1.5em;
+      }
+
+      .recent-activity-row-details {
+        font-size: .8em;
+        color: $secondary;
+      }
+    }
+  }
+}
+
+.documents-container {
+  .documents-wrapper {
+    background: $white;
+    border: 1px solid $gray-200;
+    border-radius: $border-radius;
+
+    .documents-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .documents-row-left {
+        padding: 1rem;
+        flex: none;
+      }
+      .documents-row-right {
+        padding: 1rem;
+        flex: auto;
+        text-align: right;
+      }
+
+      .documents-row-icon {
+        line-height: 1;
+        font-size: 1.5em;
+        color: $secondary;
+      }
+
+      .documents-row-details {
+        font-size: .8em;
+        color: $secondary;
+      }
+    }
+  }
+}
+
+
+.invested-entity-modal-display {
+  font-size: 2.5rem;
+  font-weight: 300;
+
+  @include media-breakpoint-up(lg) {
+    font-size: 3.5rem;
+  }
+}
+
+.entity-history-table {
+  tr {
+    th, td {
+      &:last-child {
+        width: 99%;
+      }
+      &:not(:last-child) {
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+
+.summary-charts-container {
+  .summary-charts-wrapper {
+    // text-align: center;
+    padding: 1rem;
+    background: $white;
+    border: 1px solid $gray-200;
+    border-radius: $border-radius;
+
+    .summary-charts-filters {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .summary-charts-list {
+      padding: 2rem 0rem;
+      display: flex;
+      justify-content: space-around;
+
+      .summary-charts-item-container {
+        &:last-child {
+          padding-bottom: 0rem;
+        }
+        .summary-charts-item-wrapper {
+          display: inline-block;
+          text-align: center;
+          .summary-charts-value {
+            @include media-breakpoint-up(lg) {
+              font-size: 2rem;
+              line-height: 2rem;
+            }
+            font-size: 1.25rem;
+            line-height: 1.25rem;
+            font-weight: 300;
+            padding-bottom: .5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.admin-container {
+  .admin-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex: auto;
+
+    .admin-navigation,
+    .admin-workspace {
+      overflow-y: auto;
+    }
+
+    .admin-navigation {
+      flex: none;
+      padding-right: 2rem;
+    }
+    .admin-workspace {
+      flex: auto;
+    }
+  }
+}
+
+
+.investor-list-container {
+  .investor-list-wrapper {
+    background: $white;
+    border: 1px solid $gray-200;
+    border-radius: $border-radius;
+
+    .investor-list-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .investor-list-row-left {
+        padding: 1rem;
+        flex: none;
+      }
+      .investor-list-row-right {
+        padding: 1rem;
+        flex: auto;
+        text-align: right;
+      }
+
+      .investor-list-row-details {
+        font-size: .8em;
+        color: $secondary;
+      }
+    }
+  }
+}
