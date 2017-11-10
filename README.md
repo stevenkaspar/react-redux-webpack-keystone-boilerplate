@@ -4,8 +4,9 @@
 
 ### Usage
 
-    npm install
-    gulp
+    yarn install          # or npm install
+    npm run dev           # runs server with webpack HMR
+    npm run serve:prod    # builds bundles and starts server
 
 > make sure your mongo process is running
 
@@ -18,18 +19,13 @@
 
 ### Features
 
-- **gulp**
+- **KeystoneJS**
 
-    gulp default task that...
-
-    - starts the KeystoneJS app
-    - watches KeystoneJS app files and restarts the KeystoneJS app whenever a file changes
-    - watches `public/styles` and compiles sass on file change
-    - watches `public/js` and compiles a `bundle.js` file using webpack
+    KeystoneJS CMS included
 
 - **webpack**
 
-    webpack is called by the gulp task using `webpack.config.js` to compile one static `bundle.js` file
+    webpack is setup to run hot module reloading and to build for production
 
 - **sass**
 
@@ -37,8 +33,28 @@
 
 - **bootstrap**
 
-    bootstrap 4 (beta) is included and is ready to go with any custom component by using `import 'bootstrap'`
+    bootstrap 4 (beta) is included and is ready to go
+
+- **font awesome**
+
+    Font Awesome included in scss
 
 - **react**
 
-    React with Redux
+    React with Redux and HMR middleware
+
+- **reset password** page included
+
+    ![Reset Password Picture](./docs/images/reset-password-form.png)
+
+- **signin** page included
+
+    ![Signin](./docs/images/signin-form.png)
+
+- **Hot Module Reload ready**
+
+    ![Home](./docs/images/home.png)
+
+- **React Routing** skeleton setup
+
+    ![Admin](./docs/images/admin.png)
