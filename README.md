@@ -15,39 +15,40 @@
 ### Requirements
 
 - NodeJS
+
+    > v8.9.1
+
 - MongoDB
 
 ### Features
 
-- **KeystoneJS**
+- **KeystoneJS - 4.0.0-beta.5**
 
-    KeystoneJS CMS included
-
-- **webpack**
+- **Webpack - 3.5.5**
 
     webpack is setup to run hot module reloading and to build for production
 
-- **sass**
+- **SASS**
 
     **gulp-sass** compiles `public/styles/scss` directory to one `public/styles/site.css` file
 
-- **bootstrap**
+- **Bootstrap 4 **
 
-    bootstrap 4 (beta) is included and is ready to go
+    Bootstrap 4 (beta) is included and is ready to go
 
-- **font awesome**
+- **Font Awesome - 4.7.0**
 
     Font Awesome included in scss
 
-- **react**
+- **React - 16.1.0**
 
-    React with Redux and HMR middleware
+    React with Redux (3.7.2) and HMR middleware (2.20.0)
 
-- **reset password** page included
+- **reset password** - makes an api call that will send an email with a password link
 
     ![Reset Password Picture](./docs/images/reset-password-form.png)
 
-- **signin** page included
+- **signin**
 
     ![Signin](./docs/images/signin-form.png)
 
@@ -55,6 +56,6 @@
 
     ![Home](./docs/images/home.png)
 
-- **React Routing** skeleton setup
+- **React Routing** - react-router-dom@4.2.2
 
     ![Admin](./docs/images/admin.png)

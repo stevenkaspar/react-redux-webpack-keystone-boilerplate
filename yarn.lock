@@ -3915,7 +3915,7 @@ hoist-non-react-statics@^1.0.3, hoist-non-react-statics@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
 
-hoist-non-react-statics@^2.3.0:
+hoist-non-react-statics@^2.2.1, hoist-non-react-statics@^2.3.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.3.1.tgz#343db84c6018c650778898240135a1420ee22ce0"
 
@@ -7135,6 +7135,17 @@ react-redux@5.0.2:
     lodash-es "^4.2.0"
     loose-envify "^1.1.0"
 
+react-redux@^5.0.6:
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.6.tgz#23ed3a4f986359d68b5212eaaa681e60d6574946"
+  dependencies:
+    hoist-non-react-statics "^2.2.1"
+    invariant "^2.0.0"
+    lodash "^4.2.0"
+    lodash-es "^4.2.0"
+    loose-envify "^1.1.0"
+    prop-types "^15.5.10"
+
 react-router-dom@^4.2.2:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.2.2.tgz#c8a81df3adc58bba8a76782e946cbd4eae649b8d"
@@ -7214,6 +7225,15 @@ react@15.4.2:
     fbjs "^0.8.4"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
+
+react@^16.1.0:
+  version "16.1.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.1.0.tgz#1c2bdac3c17fe7ee9282fa35aca6cc36387903e1"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
 
 reactcss@^1.1.1:
   version "1.2.3"
@@ -7438,7 +7458,7 @@ redux@3.6.0:
     loose-envify "^1.1.0"
     symbol-observable "^1.0.2"
 
-redux@^3.7.1:
+redux@^3.7.1, redux@^3.7.2:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/redux/-/redux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
   dependencies:
