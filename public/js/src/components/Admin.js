@@ -23,7 +23,7 @@ export default class Admin extends React.Component {
         </div>
       )
     }
-    if(!this.props.user.user.isAdmin){
+    if(!this.props.user.user.is_admin){
       return (
         <div className='container-fluid'>
           <div className='row pb-5'>

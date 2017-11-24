@@ -23,7 +23,7 @@ let getOne = (req, res, next) => {
 }
 
 let get = (req, res, next) => {
-  if(req.user.isAdmin){
+  if(req.user.is_admin){
     User.model.find({is_investor: true})
       .exec((err, users) => {
       if(err){
@@ -55,14 +55,6 @@ let get = (req, res, next) => {
 
 let create = (req, res, next) => {
 
-  if(!userCanCreate(req)){
-    return res.status(500).jsonp({
-      error:  'What are you trying to do?',
-      success: false,
-      data: {}
-    })
-  }
-
   let new_user = new User.model({
     name:      {
       first: req.body.name.first,
@@ -70,7 +62,8 @@ let create = (req, res, next) => {
     },
     email:    req.body.email,
     password: req.body.password,
-    active:   req.body.active === 'true'
+    active:   req.body.active,
+    is_admin:  req.body.is_admin && process.env.TESTING === 'true',
   })
 
   new_user.save(err => {
@@ -140,7 +133,7 @@ let resetPassword = (req, res, next) => {
   })
 
   const reset_url = `http://${process.env.BASE_URL}/reset-password/${hash}`
-  
+
   User.model.findOne({
     email: req.query.email
   }).exec((err, user) => {
@@ -202,8 +195,8 @@ exports = module.exports =  {
 }
 
 let userCanUpdate = req => {
-  return (req.user.isAdmin || req.user.id === req.params.user_id)
+  return (req.user.is_admin || req.user.id === req.params.user_id)
 }
-let userCanCreate = req => {
-  return (req.user.isAdmin)
-}
+// let userCanCreate = req => {
+//   return (req.user.is_admin)
+// }

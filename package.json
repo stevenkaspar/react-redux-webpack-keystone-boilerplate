@@ -48,6 +48,7 @@
     "gulp-shell": "^0.6.3",
     "gulp-watch": "^4.3.11",
     "html-webpack-plugin": "^2.30.1",
+    "mocha": "^4.0.1",
     "node-sass": "^4.5.0",
     "raw-loader": "^0.5.1",
     "sass-loader": "^6.0.6",
@@ -60,7 +61,8 @@
     "start": "node keystone.js",
     "build": "./node_modules/webpack/bin/webpack.js --config webpack.config.js",
     "serve:prod": "npm run build && NODE_ENV=production USE_KEYSTONE_SERVER=true node keystone.js",
-    "dev": "NODE_ENV=development USE_KEYSTONE_SERVER=true gulp"
+    "dev": "NODE_ENV=development USE_KEYSTONE_SERVER=true gulp",
+    "test": "USE_KEYSTONE_SERVER=false TESTING=true ./node_modules/.bin/mocha ./tests/main.test.js --exit"
   },
   "repository": {
     "type": "git",

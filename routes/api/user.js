@@ -1,6 +1,15 @@
 const keystone = require('keystone')
 
 let getLoggedInUser = (req, res, next) => {
+
+  if(!req.user) {
+    return res.status(404).jsonp({
+      error:   'You are not logged.',
+      success: false,
+      data: {}
+    })
+  }
+
   keystone.list('User').model.findOne({_id: req.user.id})
     .exec((err, user) => {
     if(err){

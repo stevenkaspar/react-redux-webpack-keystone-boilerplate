@@ -59,12 +59,13 @@ exports = module.exports = (app) => {
 	app.get('/reset-password/:hash', routes.views.reset_password)
 
   app.all('/api/signin', routes.api.signin, routes.views.signin)
+  app.all('/api/signout', routes.api.signout, routes.views.signin)
   app.all('/api/reset-password', routes.api.reset_password, routes.views.signin)
   app.post('/api/users/reset_password', routes.api.users.resetPassword)
 
-
-  app.all('*', middleware.requireUser)
-  app.all('/api*', middleware.requireApiUser)
+  // NOTE: To protect a route you can uncomment these
+  // app.all('*', middleware.requireUser)
+  // app.all('/api*', middleware.requireApiUser)
 
   app.all('/', (req, res, next) => res.redirect('/app'))
 
@@ -81,9 +82,5 @@ exports = module.exports = (app) => {
   app.get('/api/users',     routes.api.users.get)
   app.post('/api/users',     routes.api.users.create)
   app.put('/api/users/:user_id',     routes.api.users.update)
-
-
-	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
-	// app.get('/protected', middleware.requireUser, routes.views.protected);
 
 };

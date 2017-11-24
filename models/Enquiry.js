@@ -52,7 +52,7 @@ Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 	var enquiry = this;
 	var brand = keystone.get('brand');
 
-	keystone.list('User').model.find().where('isAdmin', true).exec(function (err, admins) {
+	keystone.list('User').model.find().where('is_admin', true).exec(function (err, admins) {
 		if (err) return callback(err);
 		new keystone.Email({
 			templateName: 'enquiry-notification',

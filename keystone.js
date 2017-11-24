@@ -29,7 +29,8 @@ keystone.init({
 	'auth': true,
 	'user model': 'User',
   'cookie secret': process.env.COOKIE_SECRET || 'SOjsda823thpp9asv89ahfiag8r79aenpg',
-	'mongo': process.env.RWKB_MONGO_URI || "mongodb://localhost/react-redux-keystone-boilerplate"
+	'mongo': process.env.RWKB_MONGO_URI || "mongodb://localhost/react-redux-keystone-boilerplate",
+  'auto update': process.env.TESTING !== 'true'
 });
 
 // Load your project's Models
@@ -74,7 +75,7 @@ if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_DOMAIN) {
 if(process.env.USE_KEYSTONE_SERVER === 'true'){
 	keystone.start();
 }
-else {
+else if(process.env.TESTING !== 'true') {
 	console.log(`
 	/**
 	 * STARTING

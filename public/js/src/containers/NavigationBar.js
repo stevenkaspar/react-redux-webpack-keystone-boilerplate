@@ -31,7 +31,7 @@ class NavigationBar extends Component {
         <Collapse isOpen={this.state.is_open} navbar>
           <Nav className="ml-auto" navbar>
             {
-              this.props.user.user.isAdmin ?
+              this.props.user.user.is_admin ?
                 <li className='nav-item'>
                   <Link className='nav-link' to='/app/admin'>admin</Link>
                 </li>
