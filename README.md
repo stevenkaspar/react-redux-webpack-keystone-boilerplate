@@ -22,7 +22,9 @@
 
 ### Features
 
-- **KeystoneJS - 4.0.0-beta.5**
+- **KeystoneJS - 4.0.0-beta.7**
+
+  > I am using a Fork of this that fixes some of the beta bugs. The keystone team has been slow in resolving issues so I now maintain my own version
 
 - **Webpack - 3.5.5**
 
