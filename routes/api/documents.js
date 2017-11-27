@@ -6,45 +6,34 @@ const s3 = new S3({
   region: process.env.S3_REGION
 })
 
-let getLoggedInUsers = (req, res, next) => {
-  keystone.list('Document').model.find({
-    users: req.user.id
-  }).populate('investment').exec((err, documents) => {
-    if(err){
-      return res.status(500).jsonp({
-        error: err.message,
-        success: false,
-        data: {}
-      })
-    }
-    res.jsonp({
-      error:  '',
-      success: true,
-      data: {
-        documents
-      }
-    })
-  })
+const {documents} = require('../services/documents')
+
+const { authErrResponse, errResponse, successResponse } = require('./helpers')
+
+let getLoggedInUsers = async (req, res, next) => {
+  if(!req.user) return authErrResponse({res})
+
+  try {
+    let documents = await documents.getLoggedInUsers(req, res, next)
+    successResponse({res, data: { documents }})
+  }
+  catch(err){
+    errResponse({err, res})
+  }
 }
 
 let getDocumentsFileContents = (req, res, next) => {
+  if(!req.user) return authErrResponse({res})
+
   keystone.list('Document').model.find({
     users: req.user.id,
     _id:   req.params.document_id
   }).exec((err, documents) => {
     if(err){
-      return res.status(500).jsonp({
-        error: err.message,
-        success: false,
-        data: {}
-      })
+      return errResponse({err, res})
     }
     else if(documents.length === 0){
-      return res.status(500).jsonp({
-        error: 'File not found',
-        success: false,
-        data: {}
-      })
+      return errResponse({err: new Error('File not found'), res})
     }
     const document = documents[0]
     const params = {

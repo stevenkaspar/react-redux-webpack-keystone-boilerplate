@@ -1,190 +1,55 @@
-const keystone = require('keystone')
-const User     = keystone.list('User')
-const randomstring = require('randomstring')
+const services = require('../services')
 
-let getOne = (req, res, next) => {
-  User.model.findOne({_id: req.params.user_id})
-    .exec((err, user) => {
-    if(err){
-      return res.status(500).jsonp({
-        error: err.message,
-        success: false,
-        data: {}
-      })
-    }
-    res.jsonp({
-      error:  '',
-      success: true,
-      data: {
-        user
-      }
-    })
-  })
-}
+const { authErrResponse, errResponse, successResponse } = require('./helpers')
 
-let get = (req, res, next) => {
-  if(req.user.is_admin){
-    User.model.find({is_investor: true})
-      .exec((err, users) => {
-      if(err){
-        return res.status(500).jsonp({
-          error: err.message,
-          success: false,
-          data: {}
-        })
-      }
-      res.jsonp({
-        error:  '',
-        success: true,
-        data: {
-          users
-        }
-      })
-    })
+let getOne = async (req, res, next) => {
+  try {
+    let user = await services.users.getOne(req, res, next)
+    successResponse({res, data: {user}})
   }
-  else {
-    return res.jsonp({
-      error: '',
-      success: true,
-      data: {
-        users: []
-      }
-    })
+  catch(err){
+    errResponse({res, err})
   }
 }
 
-let create = (req, res, next) => {
-
-  let new_user = new User.model({
-    name:      {
-      first: req.body.name.first,
-      last:  req.body.name.last
-    },
-    email:    req.body.email,
-    password: req.body.password,
-    active:   req.body.active,
-    is_admin:  req.body.is_admin && process.env.TESTING === 'true',
-  })
-
-  new_user.save(err => {
-    if(err){
-      return res.status(500).jsonp({
-        error: err.message,
-        success: false,
-        data: {}
-      })
-    }
-    res.jsonp({
-      error:  '',
-      success: true,
-      data: {
-        user: new_user
-      }
-    })
-  })
-}
-
-let update = (req, res, next) => {
-  if(!userCanUpdate(req)){
-    return res.status(500).jsonp({
-      error:  'What are you trying to do?',
-      success: false,
-      data: {}
-    })
+let get = async (req, res, next) => {
+  try {
+    let users = await services.users.get(req, res, next)
+    successResponse({res, data: {users}})
   }
-  User.model.findOne({
-    _id: req.params.user_id
-  }).exec((err, user) => {
-    if(err){
-      return res.status(500).jsonp({
-        error: err.message,
-        success: false,
-        data: {}
-      })
-    }
-
-    user.name.first = req.body.name.first
-    user.name.last  = req.body.name.last
-    user.email      = req.body.email
-    user.active     = req.body.active === 'true'
-
-    if(req.body.password && req.body.password.length > 0){
-      user.password = req.body.password
-    }
-
-    user.save(err => {
-      if(err){
-        return res.status(500).jsonp({
-          error: err.message,
-          success: false,
-          data: {}
-        })
-      }
-
-      getOne(req, res, next)
-    })
-  })
+  catch(err){
+    errResponse({res, err})
+  }
 }
 
-let resetPassword = (req, res, next) => {
-  const hash = randomstring.generate({
-    length: 256,
-    charset: 'alphabetic'
-  })
+let create = async (req, res, next) => {
+  try {
+    let user = await services.users.create(req, res, next)
+    successResponse({res, data: {user}})
+  }
+  catch(err){
+    errResponse({res, err})
+  }
+}
 
-  const reset_url = `http://${process.env.BASE_URL}/reset-password/${hash}`
+let update = async (req, res, next) => {
+  try {
+    let user = await services.users.update(req, res, next)
+    successResponse({res, data: {user}})
+  }
+  catch(err){
+    errResponse({res, err})
+  }
+}
 
-  User.model.findOne({
-    email: req.query.email
-  }).exec((err, user) => {
-    if(err){
-      return res.status(500).jsonp({
-        error: err.message,
-        success: false,
-        data: {}
-      })
-    }
-
-    user.reset_password_hash = hash
-
-    user.save(err => {
-      if(err){
-        return res.status(500).jsonp({
-          error: err.message,
-          success: false,
-          data: {}
-        })
-      }
-      new keystone.Email({
-  			templateName: 'reset-password',
-  			transport: 'mailgun',
-  		}).send({
-  			to: user.email,
-  			from: {
-  				name: 'Fusion Hospitality',
-  				email: 'support@fusion-hospitality.com',
-  			},
-  			subject: 'Your Password Reset Link',
-  			hash,
-        reset_url
-  		}, (err) => {
-        if(err){
-          return res.status(500).jsonp({
-            error: err.message,
-            success: false,
-            data: {}
-          })
-        }
-        res.jsonp({
-          error:   '',
-          success: true,
-          data: {
-            success: true
-          }
-        })
-      })
-    })
-  })
+let resetPassword = async (req, res, next) => {
+  try {
+    let user = await services.users.resetPassword(req, res, next)
+    successResponse({res, data: {user}})
+  }
+  catch(err){
+    errResponse({res, err})
+  }
 }
 
 exports = module.exports =  {
@@ -193,10 +58,3 @@ exports = module.exports =  {
   update,
   resetPassword
 }
-
-let userCanUpdate = req => {
-  return (req.user.is_admin || req.user.id === req.params.user_id)
-}
-// let userCanCreate = req => {
-//   return (req.user.is_admin)
-// }

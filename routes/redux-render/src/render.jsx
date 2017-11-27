@@ -5,36 +5,27 @@ import { renderToString } from 'react-dom/server'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { StaticRouter as Router, Route, Switch, Link } from 'react-router-dom'
-import reducer from '../../public/js/src/reducers'
+import reducer from '../../../public/js/src/reducers'
 import thunk from 'redux-thunk'
 
-import dataServices from '../../public/js/src/actions'
+import dataServices from '../../../public/js/src/actions'
 
-import NavigationBar from '../../public/js/src/containers/NavigationBar'
-import Home from '../../public/js/src/containers/Home'
-import Admin from '../../public/js/src/containers/Admin'
+import App from '../../../public/js/src/containers/App'
 
-import style from '../../public/styles/src/site.scss'
+import style from '../../../public/styles/src/site.scss'
 
 function handleRender(state, req, res, next) {
   // Create a new Redux store instance
-  // const store = createStore(counterApp)
-  const middleware = [ thunk, ...dataServices ]
   const store = createStore(
     reducer,
-    state,
-    applyMiddleware(...middleware)
+    state
   )
 
   // Render the component to a string
   const html = renderToString(
     <Provider store={store}>
-      <Router location={{pathname: req.originalUrl}} context={store}>
-        <div>
-          <NavigationBar store={store}/>
-          <Route exact={true} path="/app" component={Home} />
-          <Route path="/app/admin" component={Admin} />
-        </div>
+      <Router location={req.url} context={store}>
+        <App store={store}/>
       </Router>
     </Provider>
   )

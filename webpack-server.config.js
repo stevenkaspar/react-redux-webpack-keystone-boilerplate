@@ -20,10 +20,10 @@ const devtool = {
 }
 const entry = {
   development: {
-    'index': './routes/redux-render/index.jsx',
+    'render': './routes/redux-render/src/render.jsx',
   },
   production: {
-    'index': './routes/redux-render/index.jsx',
+    'render': './routes/redux-render/src/render.jsx',
   }
 }
 const plugins = {

@@ -32,7 +32,7 @@ const routes = {
   api:   importRoutes('./api')
 }
 
-const reduxRender = require('./redux-render/index')
+const reduxRender = require('./redux-render')
 
 // Setup Route Bindings
 exports = module.exports = (app) => {
@@ -56,18 +56,7 @@ exports = module.exports = (app) => {
     }))
   }
 
-  app.use('/app', async (req, res, next) => {
-    const User = keystone.list('User')
-    let state = {
-      user: {
-        user: req.user || {}
-      },
-      users: {
-        items: await User.model.find({})
-      }
-    }
-    reduxRender(state, req, res, next)
-  })
+  app.use('/app', reduxRender)
 
   app.get('/signin',  routes.views.signin)
   app.get('/signout', middleware.signout, routes.views.signin)

@@ -17,7 +17,7 @@ const paths = {
 		'routes/**/*',
 		'keystone.js',
 		'package.json',
-    '!routes/redux-render/**/*.js'
+    '!routes/redux-render/**/*.jsx'
 	],
 	/**
 	 * gulp-sass configuration
@@ -41,8 +41,7 @@ const paths = {
 	'webpack-server': {
 		config: 'webpack-server.config.js',
 		watch_files: [
-			'public/js/src/**/*',
-			'routes/redux-render/index.jsx',
+			'routes/redux-render/**/*.jsx',
 			'webpack-server.config.js'
 		]
 	},
