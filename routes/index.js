@@ -56,6 +56,8 @@ exports = module.exports = (app) => {
     }))
   }
 
+  // this allows us to do server side rendering
+  // if you don't want to do that you can remove
   app.use('/app', reduxRender)
 
   app.get('/signin',  routes.views.signin)
