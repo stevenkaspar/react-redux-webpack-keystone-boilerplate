@@ -12,7 +12,7 @@ export default class Admin extends React.Component {
   }
 
   render(){
-    if(this.props.user.is_fetching){
+    if(Object.keys(this.props.user.user).length === 0 && this.props.user.is_fetching){
       return (
         <div className='container-fluid'>
           <div className='row pb-5'>

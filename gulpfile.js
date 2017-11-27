@@ -13,10 +13,11 @@ const paths = {
 	* paths to files that should restart app
 	*/
 	server_files: [
-		'models/**/*.js',
-		'routes/**/*.js',
+		'models/**/*',
+		'routes/**/*',
 		'keystone.js',
-		'package.json'
+		'package.json',
+    '!routes/redux-render/**/*.js'
 	],
 	/**
 	 * gulp-sass configuration
@@ -36,7 +37,15 @@ const paths = {
 			'public/js/src/**/*',
 			'webpack.config.js'
 		]
-	}
+	},
+	'webpack-server': {
+		config: 'webpack-server.config.js',
+		watch_files: [
+			'public/js/src/**/*',
+			'routes/redux-render/index.jsx',
+			'webpack-server.config.js'
+		]
+	},
 };
 
 /** starting and restarting keystone app **/
@@ -110,6 +119,27 @@ gulp.task('webpack', done => {
 	return webpack_process;
 });
 
+/** webpack-server **/
+gulp.task('watch-webpack-server', () => {
+	gulp.watch(paths['webpack-server'].watch_files, ['webpack-server']);
+});
+gulp.task('webpack-server', done => {
+	var webpack_process = spawn('./node_modules/.bin/webpack', [
+		'--config',
+		paths['webpack-server'].config
+	]);
+	webpack_process.on('close', (code, signal) => {
+		done();
+	});
+	webpack_process.stdout.on('data', (data) => {
+		console.log(`${data}`);
+	});
+	webpack_process.stderr.on('data', (data) => {
+		console.log(`Error: ${data}`);
+	});
+	return webpack_process;
+});
+
 
 /** gulp task setup **/
-gulp.task('default', ['watch-app', 'watch-sass']);//, 'watch-webpack']);
+gulp.task('default', ['watch-app', 'watch-sass', 'watch-webpack-server']);//, 'watch-webpack']);

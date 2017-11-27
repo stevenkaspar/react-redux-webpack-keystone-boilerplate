@@ -17,6 +17,12 @@ import Admin from './Admin'
 
 import style from '../../../styles/src/site.scss'
 
+// Grab the state from a global variable injected into the server-generated HTML
+const preloaded_state = window.__PRELOADED_STATE__
+
+// Allow the passed state to be garbage-collected
+delete window.__PRELOADED_STATE__
+
 export default class App extends React.Component {
   constructor(){
     super()
@@ -29,6 +35,7 @@ export default class App extends React.Component {
 
     this.store = createStore(
       reducer,
+      preloaded_state,
       applyMiddleware(...middleware)
     )
 
