@@ -46,6 +46,8 @@
 
     React with Redux (3.7.2) and HMR middleware (2.20.0)
 
+    Server side rendering (SSR) is also included and can be removed with one line in _routes/index.js_
+
 - **reset password** - makes an api call that will send an email with a password link
 
     ![Reset Password Picture](./docs/images/reset-password-form.png)
