@@ -61,12 +61,12 @@ exports = module.exports = (app) => {
   app.use('/app', reduxRender)
 
   app.get('/signin',  routes.views.signin)
-  app.get('/signout', middleware.signout, routes.views.signin)
+  app.get('/signout', middleware.signout, (req, res, next) => res.redirect('/app'))
 	app.get('/reset-password/:hash', routes.views.reset_password)
 
-  app.all('/api/signin', routes.api.signin, routes.views.signin)
-  app.all('/api/signout', routes.api.signout, routes.views.signin)
-  app.all('/api/reset-password', routes.api.reset_password, routes.views.signin)
+  app.all('/api/signin', routes.api.signin)
+  app.all('/api/signout', routes.api.signout)
+  app.all('/api/reset-password', routes.api.reset_password)
   app.post('/api/users/reset_password', routes.api.users.resetPassword)
 
   // NOTE: To protect a route you can uncomment these

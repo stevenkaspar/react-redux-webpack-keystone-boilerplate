@@ -29,7 +29,7 @@ keystone.init({
 	'auth': true,
 	'user model': 'User',
   'cookie secret': process.env.COOKIE_SECRET || 'SOjsda823thpp9asv89ahfiag8r79aenpg',
-	'mongo': process.env.RWKB_MONGO_URI || "mongodb://localhost/react-redux-keystone-boilerplate",
+	'mongo': process.env.MONGO_URI || "mongodb://localhost/react-redux-keystone-boilerplate",
   'auto update': process.env.TESTING !== 'true'
 });
 
@@ -80,34 +80,14 @@ else if(process.env.TESTING !== 'true') {
 	/**
 	 * STARTING
 	 *
+	 * env=${keystone.get('env')}
 	 * keystone.openDatabaseConnection();
-	 *
+   * keystone.initExpressApp();
+   * module.exports = keystone;
 	 */
 	`);
 	keystone.openDatabaseConnection();
-	console.log(`
-	/**
-	 * STARTING
-	 *
-	 * keystone.initExpressApp();
-	 *
-	 */
-	`);
 	keystone.initExpressApp();
-	console.log(`
-	/**
-	 * EXPORTING
-	 *
-	 * module.exports = keystone;
-	 *
-	 */
-	`);
-
-	console.log(`
-	/**
-	 * env=${keystone.get('env')}
-	 */
-	`);
 }
 
 module.exports = keystone;

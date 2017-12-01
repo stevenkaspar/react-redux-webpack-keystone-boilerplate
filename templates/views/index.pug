@@ -4,9 +4,7 @@ block css
   style!= react_css
 
 block content
-  .container
-    .row
-      #Home.col-12!= react_html
+  #Home.react-app-container!= react_html
 block js
   script!= react_js
   script(src=`${BUNDLE_PATH}/home.js` async)

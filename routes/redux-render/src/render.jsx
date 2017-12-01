@@ -24,7 +24,7 @@ function handleRender(state, req, res, next) {
   // Render the component to a string
   const html = renderToString(
     <Provider store={store}>
-      <Router location={req.url} context={store}>
+      <Router location={req.originalUrl} context={store}>
         <App store={store}/>
       </Router>
     </Provider>

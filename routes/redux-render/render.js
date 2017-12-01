@@ -9158,7 +9158,7 @@ function handleRender(state, req, res, next) {
     { store: store },
     _react2.default.createElement(
       _reactRouterDom.StaticRouter,
-      { location: req.url, context: store },
+      { location: req.originalUrl, context: store },
       _react2.default.createElement(_App2.default, { store: store })
     )
   ));
@@ -44246,13 +44246,21 @@ var NavigationBar = function (_Component) {
                 'admin'
               )
             ) : null,
-            _react2.default.createElement(
+            this.props.user.user._id ? _react2.default.createElement(
               'li',
               { className: 'nav-item' },
               _react2.default.createElement(
                 'a',
                 { className: 'nav-link', href: '/signout' },
                 'logout'
+              )
+            ) : _react2.default.createElement(
+              'li',
+              { className: 'nav-item' },
+              _react2.default.createElement(
+                'a',
+                { className: 'nav-link', href: '/signin' },
+                'login'
               )
             )
           )

@@ -37,9 +37,16 @@ class NavigationBar extends Component {
                 </li>
               : null
             }
-            <li className='nav-item'>
-              <a className='nav-link' href='/signout'>logout</a>
-            </li>
+            {
+              this.props.user.user._id ?
+                <li className='nav-item'>
+                  <a className='nav-link' href='/signout'>logout</a>
+                </li>
+              :
+                <li className='nav-item'>
+                  <a className='nav-link' href='/signin'>login</a>
+                </li>
+            }
           </Nav>
         </Collapse>
       </Navbar>
